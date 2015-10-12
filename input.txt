@@ -1,0 +1,120 @@
+
+*--------------------- Typical Corner ----------------------------------------
+.lib 'Y:\Projects\X141\Documents\TSMC\DesignDocuments\cln28hpm_1d8_elk_v1d1_2p2.l' TT
+.lib 'Y:\Projects\X141\Documents\TSMC\DesignDocuments\cln28hpm_1d8_elk_v1d1_2p2.l' TT_18
+.lib 'Y:\Projects\X141\Documents\TSMC\DesignDocuments\cln28hpm_1d8_elk_v1d1_2p2.l' TT_hvt
+.lib 'Y:\Projects\X141\Documents\TSMC\DesignDocuments\cln28hpm_1d8_elk_v1d1_2p2.l' TT_BIP
+.lib 'Y:\Projects\X141\Documents\TSMC\DesignDocuments\cln28hpm_1d8_elk_v1d1_2p2.l' TT_FMOM
+.lib 'Y:\Projects\X141\Documents\TSMC\DesignDocuments\cln28hpm_1d8_elk_v1d1_2p2.l' TT_MOS_CAP
+.lib 'Y:\Projects\X141\Documents\TSMC\DesignDocuments\cln28hpm_1d8_elk_v1d1_2p2.l' TT_MOS_CAP_18
+.lib 'Y:\Projects\X141\Documents\TSMC\DesignDocuments\cln28hpm_1d8_elk_v1d1_2p2.l' TT_RES
+.lib 'Y:\Projects\X141\Documents\TSMC\DesignDocuments\cln28hpm_1d8_elk_v1d1_2p2.l' TT_DISRES
+.lib 'Y:\Projects\X141\Documents\TSMC\DesignDocuments\cln28hpm_1d8_elk_v1d1_2p2.l' stat
+.lib 'Y:\Projects\X141\Documents\TSMC\DesignDocuments\cln28hpm_1d8_elk_v1d1_2p2.l' global
+.lib 'Y:\Projects\X141\Documents\TSMC\DesignDocuments\cln28hpm_1d8_elk_v1d1_2p2.l' global_18
+.lib 'Y:\Projects\X141\Documents\TSMC\DesignDocuments\cln28hpm_1d8_elk_v1d1_2p2.l' global_hvt
+.lib 'Y:\Projects\X141\Documents\TSMC\DesignDocuments\cln28hpm_1d8_elk_v1d1_2p2.l' TOTAL
+.lib 'Y:\Projects\X141\Documents\TSMC\DesignDocuments\cln28hpm_1d8_elk_v1d1_2p2.l' TOTAL_18
+.lib 'Y:\Projects\X141\Documents\TSMC\DesignDocuments\cln28hpm_1d8_elk_v1d1_2p2.l' TOTAL_hvt
+.lib 'Y:\Projects\X141\Documents\TSMC\DesignDocuments\cln28hpm_1d8_elk_v1d1_2p2.l' TT_DIO
+
+.param temp=85
+.param VDDL =0.9V
+.param VDDH =1.8V
+
+*cmd delmax 10e-12
+
+*infinisim options
+*cmd waveformformat wdf
+*----------------------- Gates Params & Pre-Layout Params --------------------
+
+*GATES Variables Parameters.
+*---------------------------
+.PARAM Wn=0.12um  WHmxlg=0.27um
+.PARAM r=1.375    RHmxlg=2.0
+.PARAM LHmxlg=0.15um
+.option scale=0.9
+*.option shrink_factor=0.9
+.param ccoflag=1 rcoflag=1  rgflag=1 ccoflag_hvt=1 rcoflag_hvt=1  rgflag_hvt=1
+
+*--------------------- Option Setting ----------------------------------------
+.option macmod=3
+.OPTION INGOLD=2
+.option GRAMP=9
+*--------------------- Parameters --------------------------------------------
+
+*
+*clock source
+
+.param tper=38.4n tr=0.1n 
+
+*
+*Feedback Divider
+
+.PARAM CM7=1 CM6=1 CM5=0 CM4=1 CM3=1 CM2=1 CM1=0 CM0=0    
+
+* 
+*Input Divider
+.PARAM CN4=1 CN3=1 CN2=1 CN1=1 CN0=1 
+
+ *Output Divider
+.PARAM C1=0 C0=0 
+
+ *Charge Pump Current Control
+.PARAM CT3=1 CT2=0 CT1=0 CT0=1 
+*
+*
+*--------------------- Probe Node -------------------------------------
+
+.probe tran v(pd)  v(lock)
+.probe tran v(ckref) v(ckout) v(ckoutb)
+.probe tran v(cm[7]) v(cm[6]) v(cm[5]) v(cm[4]) v(cm[3]) v(cm[2]) v(cm[1]) v(cm[0])
+.probe tran v(cn[4]) v(cn[3]) v(cn[2]) v(cn[1]) v(cn[0])
+.probe tran v(tst[3]) v(tst[2]) v(tst[1]) v(tst[0])
+.probe tran v(co[0]) v(co[1])
+
+.probe tran v(x_i0.refi) v(x_i0.fb) v(x_i0.up) v(x_i0.dn) v(x_i0.refclki)
+.probe tran v(x_i0.vctrl) v(x_i0.pdo) v(x_i0.pdl) v(x_i0.en_div) v(x_i0.pdI)
+.probe tran v(x_i0.c) v(x_i0.cb) 
+
+* VCO
+.probe tran v(x_i0.x_i3.np0) v(x_i0.x_i3.nn0) v(x_i0.x_i3.np0a) v(x_i0.x_i3.nn0a)
+.probe tran v(x_i0.x_i3.np0b) v(x_i0.x_i3.nn0b)
+
+*CP
+.probe tran V(x_i0.X_I2.Out_op)
+.probe tran I(x_i0.X_I2.M28.MAIN.D) I(x_i0.X_I2.M5.MAIN.D) I(x_i0.X_I2.M37.MAIN.D)
+.probe tran I(x_i0.X_I2.M17.MAIN.D)
+.probe tran I(x_i0.X_I2.M40.MAIN.D)
+.probe tran I(x_i0.X_I2.M34.MAIN.D)
+
+*LF
+.probe tran v(x_i0.x_i4.lf2)
+.probe tran I(x_i0.X_I4.XRPPOLYWO1.PLUS)
+.probe tran I(x_i0.X_I4.XC1.N1)
+.probe tran I(x_i0.X_I4.XC2.N1)
+.probe tran V(x_i0.X_I4.LFR) V(x_i0.X_I4.LFRB) V(x_i0.X_I4.N7)
+.probe tran I(x_i0.X_I4.M22.MAIN.D)
+.probe tran I(x_i0.X_I4.M17.MAIN.D)
+.probe tran Isub(x_i0.X_I4.LF)
+.probe tran V(x_i0.X_I4.ND[1]) V(x_i0.X_I4.ND[2]) V(x_i0.X_I4.ND[3]) V(x_i0.X_I4.ND[4])
+.probe tran V(x_i0.X_I4.NDB[0]) V(x_i0.X_I4.NDB[1]) V(x_i0.X_I4.NDB[2]) V(x_i0.X_I4.NDB[3])
+
+*FB DIV
+.probe tran V(x_i0.X_I5.C0) V(x_i0.X_I5.C0B) V(x_i0.X_I5.C1) V(x_i0.X_I5.C1B)
+.probe tran V(x_i0.X_I5.C2) V(x_i0.X_I5.C2B) V(x_i0.X_I5.C3) V(x_i0.X_I5.C3B)
+.probe tran V(x_i0.X_I5.C4) V(x_i0.X_I5.C4B) V(x_i0.X_I5.C5) V(x_i0.X_I5.C5B)
+.probe tran V(x_i0.X_I5.C6) V(x_i0.X_I5.C6B) V(x_i0.X_I5.DIV32) V(x_i0.X_I5.DIV64)
+.probe tran V(x_i0.X_I5.M1) V(x_i0.X_I5.M3) V(x_i0.X_I5.M4) V(x_i0.X_I5.M41) V(x_i0.X_I5.M5)
+.probe tran V(x_i0.X_I5.M51) V(x_i0.X_I5.M6) V(x_i0.X_I5.M61) V(x_i0.X_I5.RI) V(x_i0.X_I5.M2)
+
+*
+
+*--------------------- Analysis ---------------------------------------------
+.op 1u 2u 3u 4u 5u 6u
+.TRAN 0.01N 6u uic
+.ic v(x_i0.x_i3.np0)  = 'vddl'
+.ic v(x_i0.x_i3.nn0)  = 'vddl/2'
+*.SAVE TIME=1.0u REPEAT SEQ LEVEL=ALL FILE=X140PLL_TEST_PEX_default.ic_bin
+*.SAVE TIME=1.0u REPEAT SEQ TYPE=IC LEVEL=ALL
+
