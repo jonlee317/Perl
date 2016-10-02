@@ -1,6 +1,10 @@
 #!/usr/local/bin/perl
 
-$file_name = 'x163bgr_ac_test1.lis';
+# This script will check a log file and find the particular chosen mos in the array below.
+# It will create a file called saturation.txt displaying the mosfets operating region according
+# to the log file *.lis
+
+$file_name = 'hspicefile.lis';
 $fileout_name = 'saturation.txt';
 
 open($fin, '<', $file_name)
